@@ -6,11 +6,8 @@ const Hero = () => {
   const [movie, setmovie] = useState({});
 
   useEffect(() => {
-    /*axios.get(endpoints.popular).then((response) => {
-      console.log(response.data);*/
-
     axios
-      .request(endpoints.popular)
+      .request(categories.popular)
       .then(function (response) {
         //console.log(response.data.results);
         const movies = response.data.results;

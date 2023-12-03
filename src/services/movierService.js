@@ -15,7 +15,7 @@ const endpoints = {
 https://api.themoviedb.org/3/movie/top_rated
 https://api.themoviedb.org/3/movie/upcoming
 
-https://api.themoviedb.org/3/trending/all/day
+https://api.themoviedb.org/3/trending/all/day 
   */
 };
 
