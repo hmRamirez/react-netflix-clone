@@ -7,6 +7,7 @@ const api_key = import.meta.env.VITE_TMDB_KEY;
 
 const MovieRow = ({ url, cat }) => {
   const [movies, setMovies] = useState([]);
+  const sliderId = Math.floor(Math.random() * 1000);
 
   const api = {
     method: "GET",
@@ -35,7 +36,7 @@ const MovieRow = ({ url, cat }) => {
   }, []);
 
   const slide = (offset) => {
-    const slider = document.getElementById("slider");
+    const slider = document.getElementById("slider" + sliderId);
     slider.scrollLeft = slider.scrollLeft - offset;
   };
 
@@ -52,7 +53,7 @@ const MovieRow = ({ url, cat }) => {
         />
 
         <div
-          id="slider"
+          id={"slider" + sliderId}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
           {movies.map((movie) => {
