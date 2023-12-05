@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MovieItem from "./MovieItem";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
 const api_key = import.meta.env.VITE_TMDB_KEY;
 
 const MovieRow = ({ url, cat }) => {
@@ -21,9 +23,9 @@ const MovieRow = ({ url, cat }) => {
       const search = await axios
         .request(api)
         .then(function (response) {
-          const movies = response.data.results;
-          console.log(movies);
-          setMovies(movies);
+          const movieList = response.data.results;
+          //console.log(movieList);
+          setMovies(movieList);
         })
         .catch(function (error) {
           console.error(error);
@@ -32,11 +34,39 @@ const MovieRow = ({ url, cat }) => {
     loader();
   }, []);
 
+  const slide = (offset) => {
+    const slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - offset;
+  };
+
   return (
     <div>
-      <h2 className="">{cat}</h2>
+      <h2 className="font-nsans-bold md:text-2xl p-4 capitalize">{cat}</h2>
+      <div class="relative flex items-center group">
+        <MdChevronLeft
+          className="bg-white rounded-full absolute left-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
+          size={60}
+          onClick={() => {
+            slide(500);
+          }}
+        />
 
-      <div className="">Movie</div>
+        <div
+          id="slider"
+          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
+        >
+          {movies.map((movie) => {
+            return <MovieItem key={movie.id} movie={movie} />;
+          })}
+        </div>
+        <MdChevronRight
+          className="bg-white rounded-full absolute right-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
+          size={60}
+          onClick={() => {
+            slide(-500);
+          }}
+        />
+      </div>
     </div>
   );
 };

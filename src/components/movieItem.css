@@ -1,0 +1,8 @@
+#mi {
+  transform: scale(0.9);
+  transition: all ease 0.3s;
+}
+
+#mi:hover {
+  transform: scale(1);
+}

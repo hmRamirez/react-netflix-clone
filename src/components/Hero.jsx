@@ -1,22 +1,36 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import endpoints from "../services/movierService";
+const api_key = import.meta.env.VITE_TMDB_KEY;
 
 const Hero = () => {
   const [movie, setmovie] = useState({});
 
+  const api = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/movie/popular",
+    params: { language: "es-AR" },
+    headers: {
+      accept: "application/json",
+      Authorization: api_key,
+    },
+  };
+
   useEffect(() => {
-    axios
-      .request(categories.popular)
-      .then(function (response) {
-        //console.log(response.data.results);
-        const movies = response.data.results;
-        const randomMovie = movies[Math.floor(Math.random() * movies.length)]; // obtengo una pelicula al azaar
-        setmovie(randomMovie);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    const loader = async () => {
+      const search = await axios
+        .request(api)
+        .then(function (response) {
+          const movieList = response.data.results;
+          // obtengo una pelicula al azaar
+          const randomMovie =
+            movieList[Math.floor(Math.random() * movieList.length)];
+          setmovie(randomMovie);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+    loader();
   }, []);
 
   // En caso que no traiga nada, Retornara algun texto
@@ -38,6 +52,7 @@ const Hero = () => {
           className="w-full h-full object-cover object-top"
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
           alt={title}
+          loading="lazy"
         />
 
         <div className="absolute w-full top-[20%] lg:top-[35%] p-4 md:p-8">
