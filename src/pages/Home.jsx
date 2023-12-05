@@ -11,8 +11,8 @@ const Home = () => {
         cat="Mas Populares"
       />
       <MovieRow
-        url="https://api.themoviedb.org/3/movie/top_rated"
-        cat="Mejor valoradas"
+        url="https://api.themoviedb.org/3/trending/all/week"
+        cat="Tendencias"
       />
 
       <MovieRow
@@ -23,6 +23,10 @@ const Home = () => {
       <MovieRow
         url="https://api.themoviedb.org/3/discover/movie?with_genres=28"
         cat="Acción"
+      />
+      <MovieRow
+        url="https://api.themoviedb.org/3/movie/top_rated"
+        cat="Mejor valoradas"
       />
     </>
   );

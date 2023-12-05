@@ -8,6 +8,7 @@ const api_key = import.meta.env.VITE_TMDB_KEY;
 const MovieRow = ({ url, cat }) => {
   const [movies, setMovies] = useState([]);
   const sliderId = Math.floor(Math.random() * 1000);
+  console.log(url);
 
   const api = {
     method: "GET",
@@ -25,7 +26,7 @@ const MovieRow = ({ url, cat }) => {
         .request(api)
         .then(function (response) {
           const movieList = response.data.results;
-          //console.log(movieList);
+          console.log(movieList);
           setMovies(movieList);
         })
         .catch(function (error) {
@@ -43,7 +44,7 @@ const MovieRow = ({ url, cat }) => {
   return (
     <div>
       <h2 className="font-nsans-bold md:text-2xl p-4 capitalize">{cat}</h2>
-      <div class="relative flex items-center group">
+      <div className="relative flex items-center group">
         <MdChevronLeft
           className="bg-white rounded-full absolute left-2 opacity-80 text-gray-700 z-10 hidden group-hover:block cursor-pointer"
           size={60}

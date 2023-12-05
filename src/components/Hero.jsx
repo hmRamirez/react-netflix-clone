@@ -21,6 +21,7 @@ const Hero = () => {
         .request(api)
         .then(function (response) {
           const movieList = response.data.results;
+          //console.log(movieList);
           // obtengo una pelicula al azaar
           const randomMovie =
             movieList[Math.floor(Math.random() * movieList.length)];
@@ -42,7 +43,7 @@ const Hero = () => {
     );
 
   // Desestructuro el objeto Movie y muestrop contenido en pantalla
-  const { title, backdrop_path, realease_date, overview } = movie;
+  const { title, backdrop_path, release_date, overview } = movie;
 
   return (
     <div className="w-full h-[550px] lg:h-[850px]">
@@ -59,14 +60,17 @@ const Hero = () => {
           <h1 className="text-3xl md:text-6xl font-nsans-bold">{title}</h1>
           <div className="mt-8 mb-4">
             <button className="border bg-gray-300 text-black py-2 px-5">
-              Play
+              Reproducir
             </button>
             <button className="border  border-gray-300 py-2 px-5 ml-4">
-              watch later
+              Ver mas tarde
             </button>
           </div>
-          <p className="text-gray-400 text-sm">{realease_date}</p>
-          <p className="w-full md:max-w-[70%] lg:max-w-[50%]">{overview}</p>
+          <p className="text-gray-400 text-sm">{release_date}</p>
+          <br />
+          <p className="w-full md:max-w-[70%] lg:max-w-[50%] md:text-2xl">
+            {overview}
+          </p>
         </div>
       </div>
     </div>
