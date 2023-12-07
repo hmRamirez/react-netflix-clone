@@ -8,7 +8,7 @@ const api_key = import.meta.env.VITE_TMDB_KEY;
 const MovieRow = ({ url, cat }) => {
   const [movies, setMovies] = useState([]);
   const sliderId = Math.floor(Math.random() * 1000);
-  console.log(url);
+  //console.log(url);
 
   const api = {
     method: "GET",
@@ -26,7 +26,7 @@ const MovieRow = ({ url, cat }) => {
         .request(api)
         .then(function (response) {
           const movieList = response.data.results;
-          console.log(movieList);
+          //console.log(movieList);
           setMovies(movieList);
         })
         .catch(function (error) {
